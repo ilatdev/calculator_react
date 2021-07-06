@@ -59,10 +59,10 @@ function Calculator() {
             <Typography variant="h5">{calc}</Typography>
           </Box>
           <Box className={cls.inputView}>
-            <Typography variant="h5">{input}</Typography>
+            <Typography variant="h4">{input}</Typography>
           </Box>
           <Box className={cls.resultView}>
-            <Typography variant="h5">{result}</Typography>
+            <Typography variant="h4">{result}</Typography>
           </Box>
         </Box>
         <Box className={cls.keyboard}>
