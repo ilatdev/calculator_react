@@ -1,39 +1,66 @@
-import { makeStyles } from '@material-ui/styles'
+import { makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    border: '2px solid black',
-    backgroundColor: '#3473d1',
-    width: 400,
-    minHeight: 500
+    backgroundColor: 'white',
+    width: 500
   },
-  numberKeys: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    maxWidth: 200
-  },
-  btnWrapper: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'no-wrap'
-  },
-  display: {
-    backgroundColor: 'black',
-    padding: '8px'
+  displayView: {
+    backgroundColor: '#000',
+    padding: theme.spacing(1),
+    color: 'white'
   },
   inputView: {
-    minHeight: 50,
+    minHeight: 40,
     textAlign: 'right'
   },
   calcView: {
-    minHeight: 50,
+    minHeight: 40,
     textAlign: 'left',
     wordWrap: 'break-word',
     maxWidth: 300
   },
   resultView: {
-    textAlign: 'right'
+    minHeight: 40,
+    textAlign: 'right',
+    color: '#8EE3F5'
+  },
+  keyboard: {
+    display: 'flex',
+    padding: 1,
+    '& button': {
+      fontSize: 28,
+      fontWeight: 'bold'
+    }
+  },
+  leftGroup: {
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  zeroAndDot: {
+    '& button': {
+      width: 135,
+      height: 95,
+      margin: 1
+    }
+  },
+  numbers: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    '& button': {
+      width: 90,
+      height: 90,
+      margin: 1
+    }
+  },
+  actionsKeys: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-evenly',
+    '& button': {
+      width: 110,
+      height: 120
+    }
   }
 }))
 
