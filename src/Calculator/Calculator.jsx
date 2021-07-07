@@ -94,73 +94,108 @@ function Calculator() {
           </Box>
         </Box>
         <Box className={cls.keyboard}>
-          <Box className={cls.columnWrapper}>
-            <Box className={cls.numbers}>
-              <Button
-                id="one"
-                variant="contained"
-                color="secondary"
-                value={1}
-                onClick={addImput}>
-                1
-              </Button>
-              <Button
-                variant="contained"
-                color="secondary"
-                value="2"
-                onClick={addImput}>
-                2
-              </Button>
-              <Button
-                variant="contained"
-                color="secondary"
-                value={3}
-                onClick={addImput}>
-                3
-              </Button>
-              <Button
-                variant="contained"
-                color="secondary"
-                value={4}
-                onClick={addImput}>
-                4
-              </Button>
-              <Button
-                variant="contained"
-                color="secondary"
-                value={5}
-                onClick={addImput}>
-                5
-              </Button>
-              <Button
-                variant="contained"
-                color="secondary"
-                value={6}
-                onClick={addImput}>
-                6
-              </Button>
-              <Button
-                variant="contained"
-                color="secondary"
-                value={7}
-                onClick={addImput}>
-                7
-              </Button>
-              <Button
-                variant="contained"
-                color="secondary"
-                value={8}
-                onClick={addImput}>
-                8
-              </Button>
-              <Button
-                variant="contained"
-                color="secondary"
-                value={9}
-                onClick={addImput}>
-                9
+          <Box className={cls.mainRowKeys}>
+            <Button
+              id="one"
+              variant="contained"
+              color="secondary"
+              value={1}
+              onClick={addImput}>
+              1
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              value="2"
+              onClick={addImput}>
+              2
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              value={3}
+              onClick={addImput}>
+              3
+            </Button>
+            <Box className={cls.clearAll}>
+              <Button color="primary" variant="contained" onClick={resetAll}>
+                C
               </Button>
             </Box>
+            <Button variant="contained" color="primary" onClick={backSpace}>
+              <BackspaceIcon />
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              value={4}
+              onClick={addImput}>
+              4
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              value={5}
+              onClick={addImput}>
+              5
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              value={6}
+              onClick={addImput}>
+              6
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              value={'+'}
+              onClick={addOperator}>
+              +
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              value={'-'}
+              onClick={addOperator}>
+              -
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              value={7}
+              onClick={addImput}>
+              7
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              value={8}
+              onClick={addImput}>
+              8
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              value={9}
+              onClick={addImput}>
+              9
+            </Button>
+
+            <Button
+              variant="contained"
+              color="primary"
+              value={'x'}
+              onClick={addOperator}>
+              x
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              value={'/'}
+              onClick={addOperator}>
+              /
+            </Button>
             <Box className={cls.zeroAndDot}>
               <Button
                 variant="contained"
@@ -175,46 +210,6 @@ function Calculator() {
                 value={'.'}
                 onClick={addImput}>
                 .
-              </Button>
-            </Box>
-          </Box>
-          <Box className={cls.columnWrapper}>
-            <Box className={cls.actionsKeys}>
-              <Box className={cls.clearAll}>
-                <Button color="primary" variant="contained" onClick={resetAll}>
-                  C
-                </Button>
-              </Box>
-              <Button variant="contained" color="primary" onClick={backSpace}>
-                <BackspaceIcon />
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                value={'+'}
-                onClick={addOperator}>
-                +
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                value={'-'}
-                onClick={addOperator}>
-                -
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                value={'x'}
-                onClick={addOperator}>
-                x
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                value={'/'}
-                onClick={addOperator}>
-                /
               </Button>
             </Box>
             <Box className={cls.equalKey}>

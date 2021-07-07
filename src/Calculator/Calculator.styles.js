@@ -6,61 +6,48 @@ const useStyles = makeStyles((theme) => ({
     width: 500
   },
   displayView: {
-    backgroundColor: '#000',
+    backgroundColor: 'black',
     padding: theme.spacing(1),
     color: 'white'
   },
   inputView: {
-    minHeight: 40,
+    minHeight: 45,
     textAlign: 'right'
   },
   calcView: {
-    minHeight: 40,
+    minHeight: 35,
     textAlign: 'left',
     wordWrap: 'break-word',
     maxWidth: 300
   },
   resultView: {
-    minHeight: 40,
+    minHeight: 45,
     textAlign: 'right',
     color: '#8EE3F5'
   },
   keyboard: {
     display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
     padding: 1,
     '& button': {
       fontSize: 28,
       fontWeight: 'bold'
     }
   },
-  columnWrapper: {
+  mainRowKeys: {
     display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center'
+    flexWrap: 'wrap',
+    justifyContent: 'space-evenly',
+    '& button': {
+      width: 95,
+      height: 95,
+      margin: 1
+    }
   },
   zeroAndDot: {
     '& button': {
       width: 145,
-      height: 95,
-      margin: 1
-    }
-  },
-  numbers: {
-    display: 'flex',
-    justifyContent: 'space-evenly',
-    flexWrap: 'wrap',
-    '& button': {
-      width: 95,
-      height: 95,
-      margin: 1
-    }
-  },
-  actionsKeys: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-evenly',
-    '& button': {
-      width: 95,
       height: 95,
       margin: 1
     }
