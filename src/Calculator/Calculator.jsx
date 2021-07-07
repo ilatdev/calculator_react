@@ -96,26 +96,25 @@ function Calculator() {
         <Box className={cls.keyboard}>
           <Box className={cls.mainRowKeys}>
             <Button
-              id="one"
               variant="contained"
               color="secondary"
-              value={1}
+              value={7}
               onClick={addImput}>
-              1
+              7
             </Button>
             <Button
               variant="contained"
               color="secondary"
-              value="2"
+              value={8}
               onClick={addImput}>
-              2
+              8
             </Button>
             <Button
               variant="contained"
               color="secondary"
-              value={3}
+              value={9}
               onClick={addImput}>
-              3
+              9
             </Button>
             <Box className={cls.clearAll}>
               <Button color="primary" variant="contained" onClick={resetAll}>
@@ -161,27 +160,27 @@ function Calculator() {
               -
             </Button>
             <Button
+              id="one"
               variant="contained"
               color="secondary"
-              value={7}
+              value={1}
               onClick={addImput}>
-              7
+              1
             </Button>
             <Button
               variant="contained"
               color="secondary"
-              value={8}
+              value="2"
               onClick={addImput}>
-              8
+              2
             </Button>
             <Button
               variant="contained"
               color="secondary"
-              value={9}
+              value={3}
               onClick={addImput}>
-              9
+              3
             </Button>
-
             <Button
               variant="contained"
               color="primary"
