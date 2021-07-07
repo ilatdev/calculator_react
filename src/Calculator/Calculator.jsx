@@ -3,14 +3,20 @@ import { Button, Box, Typography } from '@material-ui/core'
 import useStyles from './Calculator.styles'
 import { Paper } from '@material-ui/core'
 
-function compute(str) {
+// Operator regex
+const regexOperator = /([+\-/*])/
+// Remplace x for *
+const fixMultiply = (string) => string.replace(/x/g, '*')
+// Eval alternative
+const compute = (string) => {
   // eslint-disable-next-line
-  return Function(`'use strict'; return (${str})`)()
+  return Function(`'use strict'; return (${string})`)()
 }
-
 // check if last char is an operator
-const isLastCharOperator = (string) =>
-  /([+\-/*])/.test(string.charAt(string.length - 1))
+const isLastCharOperator = (string) => {
+  const temp = fixMultiply(string)
+  return regexOperator.test(temp.charAt(temp.length - 1))
+}
 
 function Calculator() {
   const cls = useStyles()
@@ -28,21 +34,30 @@ function Calculator() {
       setCalc(calc.concat(temp))
       setInput('')
     }
+
+    if (isLastCharOperator(calc) && !input) {
+      let changeOperator = calc.slice(0, -1).concat(event.currentTarget.value)
+      setCalc(changeOperator)
+    }
   }
 
   const getResult = () => {
-    // concat last input
-    let joinLastInput = calc.concat(input)
+    // concat last input and clear
+    const joinLastInput = calc.concat(input)
     setCalc(joinLastInput)
-    setInput('') // clear input
-    let fixMultiply = joinLastInput.replace(/x/g, '*') // remplace x with *
+    setInput('')
+    // remplace x with *
+    const toCompute = fixMultiply(joinLastInput)
+    // basic validations
+    if (/^(0\/)/.test(toCompute)) return setResult('0')
+    if (/(\/0)$/.test(toCompute)) {
+      resetAll()
+      return setResult('Resultado indefinido')
+    }
 
-    if (fixMultiply.substring(0, 1) === '0/') return setResult('0') // 0 devided is 0
-    if (/^(0\/0+)$/.test(fixMultiply)) return setResult('Resultado indefinido') // avoid divide by 0
-
-    isLastCharOperator(fixMultiply)
-      ? setResult(compute(fixMultiply.substring(0, fixMultiply.length - 1)))
-      : setResult(compute(fixMultiply))
+    isLastCharOperator(toCompute)
+      ? setResult(compute(toCompute.substring(0, toCompute.length - 1)))
+      : setResult(compute(toCompute))
   }
 
   const resetAll = () => {
