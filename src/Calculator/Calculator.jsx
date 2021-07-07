@@ -25,7 +25,9 @@ function Calculator() {
   const [result, setResult] = useState('')
 
   const addNumber = (event) => {
-    if (input !== '0') setInput(input.concat(event.currentTarget.value))
+    if (input.includes('.') && event.currentTarget.value === '.') return null
+    if (input === '0' && event.currentTarget.value === '0') return null
+    setInput(input.concat(event.currentTarget.value))
   }
 
   const addOperator = (event) => {
@@ -160,17 +162,13 @@ function Calculator() {
                 variant="contained"
                 color="primary"
                 value={'.'}
-                onClick={addOperator}>
+                onClick={addNumber}>
                 .
               </Button>
             </Box>
           </Box>
           <Box className={cls.actionsKeys}>
-            <Button
-              variant="contained"
-              color="primary"
-              value={'-'}
-              onClick={resetAll}>
+            <Button variant="contained" color="primary" onClick={resetAll}>
               C
             </Button>
             <Button
