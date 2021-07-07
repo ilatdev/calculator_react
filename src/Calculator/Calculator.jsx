@@ -51,11 +51,11 @@ function Calculator() {
     // remplace x with *
     const toCompute = fixMultiply(joinLastInput)
     // basic validations
-    if (/^(0\/)/.test(toCompute)) return setResult('0')
     if (/(\/0)$/.test(toCompute)) {
       resetAll()
       return setResult('Resultado indefinido')
     }
+    if (/^(0\/)/.test(toCompute)) return setResult('0')
 
     isLastCharOperator(toCompute)
       ? setResult(compute(toCompute.substring(0, toCompute.length - 1)))
