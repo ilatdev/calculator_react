@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { Button, Box, Typography } from '@material-ui/core'
+import { Button, Box, Typography, Paper } from '@material-ui/core'
 import useStyles from './Calculator.styles'
-import { Paper } from '@material-ui/core'
+import BackspaceIcon from '@material-ui/icons/Backspace'
 
 // Operator regex
 const regexOperator = /([+\-/*])/
@@ -24,10 +24,20 @@ function Calculator() {
   const [calc, setCalc] = useState('')
   const [result, setResult] = useState('')
 
-  const addNumber = (event) => {
+  const addImput = (event) => {
     if (input.includes('.') && event.currentTarget.value === '.') return null
     if (input === '0' && event.currentTarget.value === '0') return null
+    if (input === '0' && event.currentTarget.value !== '0') {
+      return setInput(event.currentTarget.value)
+    }
     setInput(input.concat(event.currentTarget.value))
+  }
+
+  const backSpace = () => {
+    if (input) {
+      const temp = input
+      return setInput(temp.substring(0, temp.length - 1))
+    }
   }
 
   const addOperator = (event) => {
@@ -44,6 +54,7 @@ function Calculator() {
   }
 
   const getResult = () => {
+    if (!input || !calc) return null
     // concat last input and clear
     const joinLastInput = calc.concat(input)
     setCalc(joinLastInput)
@@ -83,70 +94,70 @@ function Calculator() {
           </Box>
         </Box>
         <Box className={cls.keyboard}>
-          <Box className={cls.leftGroup}>
+          <Box className={cls.columnWrapper}>
             <Box className={cls.numbers}>
               <Button
                 id="one"
                 variant="contained"
                 color="secondary"
                 value={1}
-                onClick={addNumber}>
+                onClick={addImput}>
                 1
               </Button>
               <Button
                 variant="contained"
                 color="secondary"
                 value="2"
-                onClick={addNumber}>
+                onClick={addImput}>
                 2
               </Button>
               <Button
                 variant="contained"
                 color="secondary"
                 value={3}
-                onClick={addNumber}>
+                onClick={addImput}>
                 3
               </Button>
               <Button
                 variant="contained"
                 color="secondary"
                 value={4}
-                onClick={addNumber}>
+                onClick={addImput}>
                 4
               </Button>
               <Button
                 variant="contained"
                 color="secondary"
                 value={5}
-                onClick={addNumber}>
+                onClick={addImput}>
                 5
               </Button>
               <Button
                 variant="contained"
                 color="secondary"
                 value={6}
-                onClick={addNumber}>
+                onClick={addImput}>
                 6
               </Button>
               <Button
                 variant="contained"
                 color="secondary"
                 value={7}
-                onClick={addNumber}>
+                onClick={addImput}>
                 7
               </Button>
               <Button
                 variant="contained"
                 color="secondary"
                 value={8}
-                onClick={addNumber}>
+                onClick={addImput}>
                 8
               </Button>
               <Button
                 variant="contained"
                 color="secondary"
                 value={9}
-                onClick={addNumber}>
+                onClick={addImput}>
                 9
               </Button>
             </Box>
@@ -155,53 +166,62 @@ function Calculator() {
                 variant="contained"
                 color="secondary"
                 value={0}
-                onClick={addNumber}>
+                onClick={addImput}>
                 0
               </Button>
               <Button
                 variant="contained"
                 color="primary"
                 value={'.'}
-                onClick={addNumber}>
+                onClick={addImput}>
                 .
               </Button>
             </Box>
           </Box>
-          <Box className={cls.actionsKeys}>
-            <Button variant="contained" color="primary" onClick={resetAll}>
-              C
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              value={'+'}
-              onClick={addOperator}>
-              +
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              value={'-'}
-              onClick={addOperator}>
-              -
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              value={'x'}
-              onClick={addOperator}>
-              x
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              value={'/'}
-              onClick={addOperator}>
-              /
-            </Button>
-            <Button variant="contained" color="primary" onClick={getResult}>
-              =
-            </Button>
+          <Box className={cls.columnWrapper}>
+            <Box className={cls.actionsKeys}>
+              <Box className={cls.clearAll}>
+                <Button color="primary" variant="contained" onClick={resetAll}>
+                  C
+                </Button>
+              </Box>
+              <Button variant="contained" color="primary" onClick={backSpace}>
+                <BackspaceIcon />
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                value={'+'}
+                onClick={addOperator}>
+                +
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                value={'-'}
+                onClick={addOperator}>
+                -
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                value={'x'}
+                onClick={addOperator}>
+                x
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                value={'/'}
+                onClick={addOperator}>
+                /
+              </Button>
+            </Box>
+            <Box className={cls.equalKey}>
+              <Button variant="contained" color="primary" onClick={getResult}>
+                =
+              </Button>
+            </Box>
           </Box>
         </Box>
       </Paper>

@@ -33,23 +33,25 @@ const useStyles = makeStyles((theme) => ({
       fontWeight: 'bold'
     }
   },
-  leftGroup: {
+  columnWrapper: {
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    alignItems: 'center'
   },
   zeroAndDot: {
     '& button': {
-      width: 135,
+      width: 145,
       height: 95,
       margin: 1
     }
   },
   numbers: {
     display: 'flex',
+    justifyContent: 'space-evenly',
     flexWrap: 'wrap',
     '& button': {
-      width: 90,
-      height: 90,
+      width: 95,
+      height: 95,
       margin: 1
     }
   },
@@ -58,8 +60,22 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap',
     justifyContent: 'space-evenly',
     '& button': {
-      width: 110,
-      height: 120
+      width: 95,
+      height: 95,
+      margin: 1
+    }
+  },
+  clearAll: {
+    '& button': {
+      backgroundColor: '#d32f2f'
+    }
+  },
+  equalKey: {
+    '& button': {
+      width: 200,
+      height: 95,
+      margin: 2,
+      backgroundColor: '#388e3c'
     }
   }
 }))
