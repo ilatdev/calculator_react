@@ -35,9 +35,9 @@ function Calculator() {
 
   const backSpace = () => {
     if (input) {
-      const temp = input
-      return setInput(temp.substring(0, temp.length - 1))
+      return setInput(input.substring(0, input.length - 1))
     }
+    return setCalc(calc.substring(0, calc.length - 1))
   }
 
   const addOperator = (event) => {
