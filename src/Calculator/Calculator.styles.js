@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-evenly',
+    alignItems: 'center',
     '& button': {
       width: 95,
       height: 95,
