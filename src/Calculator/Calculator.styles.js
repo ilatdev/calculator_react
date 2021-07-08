@@ -3,12 +3,21 @@ import { makeStyles } from '@material-ui/core'
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: 'white',
-    width: 500
+    width: 500,
+    border: '2px solid #f1faee',
+    borderRadius: 5
   },
   displayView: {
     backgroundColor: 'black',
     padding: theme.spacing(1),
-    color: 'white'
+    color: 'white',
+    border: '2px solid #f1faee',
+    borderRadius: 5,
+    '& .MuiTypography-root': {
+      fontFamily: `'Roboto Mono', monospace`,
+      fontWeight: 500,
+      wordWrap: 'break-word'
+    }
   },
   inputView: {
     minHeight: 45,
@@ -17,53 +26,60 @@ const useStyles = makeStyles((theme) => ({
   calcView: {
     minHeight: 35,
     textAlign: 'left',
-    wordWrap: 'break-word',
     maxWidth: 300
   },
   resultView: {
     minHeight: 45,
     textAlign: 'right',
-    color: '#8EE3F5'
+    color: '#81c784'
   },
   keyboard: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: 1,
-    '& button': {
-      fontSize: 28,
-      fontWeight: 'bold'
-    }
-  },
-  mainRowKeys: {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-evenly',
     alignItems: 'center',
+    backgroundColor: '#e2ece9',
+    padding: 1,
     '& button': {
       width: 95,
       height: 95,
-      margin: 1
+      margin: 1,
+      fontSize: 28,
+      fontWeight: 'bold'
+    },
+    '& #clearAll': {
+      backgroundColor: '#e63946',
+      '&:hover': {
+        backgroundColor: '#EB5C68'
+      }
+    },
+    '& .MuiButton-containedSecondary': {
+      backgroundColor: '#457b9d',
+      '&:hover': {
+        backgroundColor: '#6399BB'
+      }
+    },
+    '& .MuiButton-containedPrimary': {
+      backgroundColor: '#2E548A',
+      '&:hover': {
+        backgroundColor: '#3D70B8'
+      }
     }
   },
-  zeroAndDot: {
+  lastRowKeys: {
     '& button': {
       width: 145,
       height: 95,
       margin: 1
-    }
-  },
-  clearAll: {
-    '& button': {
-      backgroundColor: '#d32f2f'
-    }
-  },
-  equalKey: {
-    '& button': {
-      width: 200,
+    },
+    '& #equalKey': {
+      width: 195,
       height: 95,
       margin: 2,
-      backgroundColor: '#388e3c'
+      backgroundColor: '#049F76',
+      '&:hover': {
+        backgroundColor: '#05C793'
+      }
     }
   }
 }))
