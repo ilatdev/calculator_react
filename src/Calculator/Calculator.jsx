@@ -3,6 +3,8 @@ import { Button, Box, Typography, Paper } from '@material-ui/core'
 import useStyles from './Calculator.styles'
 import BackspaceIcon from '@material-ui/icons/Backspace'
 
+// ############ START UTILITIES ############################
+
 // Operator regex
 const regexOperator = /([+\-/*])/
 // Remplace x for *
@@ -17,20 +19,25 @@ const isLastCharOperator = (string) => {
   const temp = fixMultiply(string)
   return regexOperator.test(temp.charAt(temp.length - 1))
 }
+// round results
+const round = (number) => Math.round((number + Number.EPSILON) * 100) / 100
+
+// ############ END UTILITIES ############################
 
 function Calculator() {
   const cls = useStyles()
-  const [input, setInput] = useState('')
+  const [input, setInput] = useState('0')
   const [calc, setCalc] = useState('')
   const [result, setResult] = useState('')
 
   const addImput = (event) => {
-    if (input.includes('.') && event.currentTarget.value === '.') return null
-    if (input === '0' && event.currentTarget.value === '0') return null
-    if (input === '0' && event.currentTarget.value !== '0') {
+    // if result reset all
+    if (!!result) resetAll()
+    if (input === '0' && event.currentTarget.value) {
       return setInput(event.currentTarget.value)
     }
-    setInput(input.concat(event.currentTarget.value))
+    if (input.includes('.') && event.currentTarget.value === '.') return null
+    return setInput(input.concat(event.currentTarget.value))
   }
 
   const backSpace = () => {
@@ -41,16 +48,24 @@ function Calculator() {
   }
 
   const addOperator = (event) => {
-    if (!isLastCharOperator(calc) || input) {
-      let temp = input.concat(event.currentTarget.value)
-      setCalc(calc.concat(temp))
+    // continue concat from last result
+    if (!!result) {
+      setCalc(result + event.currentTarget.value)
       setInput('')
+      return setResult('')
     }
 
-    if (isLastCharOperator(calc) && !input) {
+    // avoid dot repeat
+    if (input === '.') return null
+
+    // change last operator
+    if (isLastCharOperator(calc) && input === '') {
       let changeOperator = calc.slice(0, -1).concat(event.currentTarget.value)
-      setCalc(changeOperator)
+      return setCalc(changeOperator)
     }
+
+    setCalc(calc + input + event.currentTarget.value)
+    return setInput('')
   }
 
   const getResult = () => {
@@ -59,22 +74,37 @@ function Calculator() {
     const joinLastInput = calc.concat(input)
     setCalc(joinLastInput)
     setInput('')
-    // remplace x with *
-    const toCompute = fixMultiply(joinLastInput)
-    // basic validations
-    if (/(\/0)$/.test(toCompute)) {
-      resetAll()
-      return setResult('Resultado indefinido')
-    }
-    if (/^(0\/)/.test(toCompute)) return setResult('0')
 
-    isLastCharOperator(toCompute)
-      ? setResult(compute(toCompute.substring(0, toCompute.length - 1)))
-      : setResult(compute(toCompute))
+    try {
+      // remplace x with *
+      const toCompute = fixMultiply(joinLastInput)
+      // avoid devide by 0
+      if (/(0\/0)$/.test(toCompute)) {
+        resetAll()
+        return setResult('Resultado indefinido')
+      }
+
+      if (/(\d+\/0)$/.test(toCompute)) {
+        resetAll()
+        return setResult('No se puede dividir por cero')
+      }
+
+      // 0 devided always 0
+      if (/^(0\/)/.test(toCompute)) return setResult('0')
+
+      isLastCharOperator(toCompute)
+        ? setResult(
+            round(compute(toCompute.substring(0, toCompute.length - 1)))
+          )
+        : setResult(round(compute(toCompute)))
+    } catch (error) {
+      if (error) resetAll()
+      return setResult('ERROR')
+    }
   }
 
   const resetAll = () => {
-    setInput('')
+    setInput('0')
     setCalc('')
     setResult('')
   }
