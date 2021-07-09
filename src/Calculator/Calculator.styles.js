@@ -2,10 +2,7 @@ import { makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: 'white',
-    width: 500,
-    border: '2px solid #f1faee',
-    borderRadius: 5
+    width: 500
   },
   displayView: {
     backgroundColor: 'black',
@@ -31,14 +28,20 @@ const useStyles = makeStyles((theme) => ({
   resultView: {
     minHeight: 45,
     textAlign: 'right',
-    color: '#81c784'
+    color: '#81c784',
+    fontSize: '30px'
+  },
+  errorResult: {
+    minHeight: 45,
+    textAlign: 'right',
+    color: '#e63946',
+    fontSize: '28px'
   },
   keyboard: {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    backgroundColor: '#e2ece9',
     padding: 1,
     '& button': {
       width: 95,
