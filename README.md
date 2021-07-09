@@ -1,6 +1,6 @@
 # Basic calculator with React
 
-## :arrow_forward: [Live Demo](https://ilatdev.github.io/calculator_react)
+## [:arrow_forward:Live Demo](https://ilatdev.github.io/calculator_react)
 
 ### Stack
 
